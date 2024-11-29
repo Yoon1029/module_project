@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const LoginPage = () => {
+
   const [admin_id, setUsername] = useState("");
   const [admin_password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [email, setEmail] = useState("")
   const navigate = useNavigate();
   const usernameInputRef = useRef(null);
 
@@ -21,9 +21,9 @@ const LoginPage = () => {
     try {
       const response = await axios.post("http://localhost:8000/admin/signin", {
         admin_id,
-        admin_password
+        admin_password,
+        email
       });
-      console.log(response);
 
       if (response.data.access_token) {
         localStorage.setItem("adminToken", response.data.access_token); 
